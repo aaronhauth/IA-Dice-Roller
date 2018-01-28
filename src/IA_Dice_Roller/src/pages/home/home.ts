@@ -22,4 +22,13 @@ export class HomePage {
     this.dicePool = [];
   }
 
+  addToDicePool( die: Die ){
+    this.dicePool.push(die);
+    console.log(this.dicePool);
+  }
+
+  removeFromDicePool( die: Die ){
+    this.dicePool.splice(this.dicePool.findIndex( x => x.color == die.color), 1);
+  }
+
 }

@@ -15,6 +15,10 @@ export class Die {
 export class DieSide {
     damage: number;
     surge: number;
+    range: number;
+    block: number;
+    evade: number;
+    dodge: number;
     url: string;
 
     constructor(damage, surge, url) {

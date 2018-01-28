@@ -173,9 +173,16 @@ var HomePage = (function () {
             .subscribe(function (results) { _this.dice = results; console.log(_this.dice); }, function (error) { return console.log(error); });
         this.dicePool = [];
     }
+    HomePage.prototype.addToDicePool = function (die) {
+        this.dicePool.push(die);
+        console.log(this.dicePool);
+    };
+    HomePage.prototype.removeFromDicePool = function (die) {
+        this.dicePool.splice(this.dicePool.findIndex(function (x) { return x.color == die.color; }), 1);
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor="let data of dice">\n        <img src="{{data.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dice">\n        <img (click)="addToDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dicePool">\n        <img (click)="removeFromDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]) === "function" && _b || Object])
@@ -195,10 +202,10 @@ var HomePage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_die__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_die__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(277);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(278);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -246,10 +253,9 @@ var DiceProvider = (function () {
     };
     DiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], DiceProvider);
     return DiceProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=DiceProvider.js.map
@@ -393,7 +399,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 280:
+/***/ 276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

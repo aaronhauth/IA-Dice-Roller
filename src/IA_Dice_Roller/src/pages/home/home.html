@@ -8,15 +8,19 @@
   <h2>Star Wars IA App</h2>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let data of dice">
-        <img src="{{data.url}}">
+      <ion-col col-2 *ngFor="let die of dice">
+        <img (click)="addToDicePool(die)" src="{{die.url}}">
       </ion-col>
     </ion-row>
 
   </ion-grid>
   <h2>Dice Pool</h2>
   <ion-grid>
-
+    <ion-row>
+      <ion-col col-2 *ngFor="let die of dicePool">
+        <img (click)="removeFromDicePool(die)" src="{{die.url}}">
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
 </ion-content>

@@ -3,7 +3,7 @@
         {
             "color" : "red",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"http://lorempixel.com/200/200?random=1",
             "sides" : [
                 {
                     "damage" : 1,
@@ -35,7 +35,7 @@
         {
             "color" : "blue",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"http://lorempixel.com/200/200?random=2",
             "sides" : [
                 {
                     "surge" : 1,
@@ -74,7 +74,7 @@
         {
             "color":"yellow",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"http://lorempixel.com/200/200?random=3",
             "sides" : [
                 {
                     "damage":1,
@@ -111,7 +111,7 @@
         {
             "color": "green",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"http://lorempixel.com/200/200?random=4",
             "sides":[
                 {
                     "damage":2,
@@ -150,7 +150,7 @@
         {
             "color" : "white",
             "type": "defense",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"http://lorempixel.com/200/200?random=5",
             "sides":[
                 {
                     "url" : "http://lorempixel.com/200/200/" 
@@ -182,7 +182,7 @@
         {
             "color" : "black",
             "type": "defense",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"http://lorempixel.com/200/200?random=6",
             "sides":[
                 {
                     "dodge":1,

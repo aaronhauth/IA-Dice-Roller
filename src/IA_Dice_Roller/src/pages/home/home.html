@@ -7,17 +7,16 @@
 <ion-content padding>
   <h2>Star Wars IA App</h2>
   <ion-grid>
-    <ion-row *ngFor="let data of dice">
-      <ion-col>
-        <ion-icon name="remove"></ion-icon>
-      </ion-col>
-      <ion-col>
+    <ion-row>
+      <ion-col *ngFor="let data of dice">
         <img src="{{data.url}}">
       </ion-col>
-      <ion-col>
-        <ion-icon name="add"></ion-icon>
-      </ion-col>
     </ion-row>
-  </ion-grid> 
+
+  </ion-grid>
+  <h2>Dice Pool</h2>
+  <ion-grid>
+
+  </ion-grid>
 
 </ion-content>

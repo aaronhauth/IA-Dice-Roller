@@ -11,6 +11,7 @@ import { Die, DieSide } from '../../models/die';
 export class HomePage {
   dice: Die[];
   dicePool: Die[];
+  results: any;
 
   constructor(public navCtrl: NavController, public diceProvider : DiceProvider) {
     this.diceProvider.getDice()
@@ -29,6 +30,11 @@ export class HomePage {
 
   removeFromDicePool( die: Die ){
     this.dicePool.splice(this.dicePool.findIndex( x => x.color == die.color), 1);
+  }
+
+  rollDice(){
+    this.results = this.diceProvider.rollDice(this.dicePool);
+    console.log(this.results);
   }
 
 }

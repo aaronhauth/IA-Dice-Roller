@@ -16,11 +16,14 @@
   </ion-grid>
   <h2>Dice Pool</h2>
   <ion-grid>
+    <div *ngIf="dicePool.length == 0">Tap the dice you would like to add to your dice pool</div>
     <ion-row>
       <ion-col col-2 *ngFor="let die of dicePool">
         <img (click)="removeFromDicePool(die)" src="{{die.url}}">
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <button ion-button round (click)="rollDice()">Roll your dice!</button>
 
 </ion-content>

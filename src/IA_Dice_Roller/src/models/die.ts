@@ -1,3 +1,5 @@
+import { RangeValueAccessor } from "@angular/forms/src/directives/range_value_accessor";
+
 export class Die {
     color: string;
     type: string;
@@ -21,9 +23,13 @@ export class DieSide {
     dodge: number;
     url: string;
 
-    constructor(damage, surge, url) {
+    constructor(damage, surge, range, block, evade, dodge, url) {
         this.damage = damage;
         this.surge = surge;
         this.url = url;
+        this.range = range;
+        this.block = block;
+        this.evade = evade;
+        this.dodge = dodge;
     }
 }

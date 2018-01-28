@@ -180,9 +180,13 @@ var HomePage = (function () {
     HomePage.prototype.removeFromDicePool = function (die) {
         this.dicePool.splice(this.dicePool.findIndex(function (x) { return x.color == die.color; }), 1);
     };
+    HomePage.prototype.rollDice = function () {
+        this.results = this.diceProvider.rollDice(this.dicePool);
+        console.log(this.results);
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dice">\n        <img (click)="addToDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dicePool">\n        <img (click)="removeFromDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dice">\n        <img (click)="addToDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n    <div *ngIf="dicePool.length == 0">Tap the dice you would like to add to your dice pool</div>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dicePool">\n        <img (click)="removeFromDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <button ion-button round (click)="rollDice()">Roll your dice!</button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]) === "function" && _b || Object])
@@ -242,7 +246,7 @@ var DiceProvider = (function () {
                 var currentSides = [];
                 for (var _b = 0, _c = die.sides; _b < _c.length; _b++) {
                     var side = _c[_b];
-                    var currentSide = new __WEBPACK_IMPORTED_MODULE_2__models_die__["b" /* DieSide */](side.damage, side.surge, side.url);
+                    var currentSide = new __WEBPACK_IMPORTED_MODULE_2__models_die__["b" /* DieSide */](side.damage, side.surge, side.range, side.block, side.evade, side.dodge, side.url);
                     currentSides.push(currentSide);
                 }
                 var currentDie = new __WEBPACK_IMPORTED_MODULE_2__models_die__["a" /* Die */](die.color, die.type, die.url, currentSides);
@@ -251,11 +255,37 @@ var DiceProvider = (function () {
             return results;
         });
     };
+    DiceProvider.prototype.getRandomInt = function (min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    };
+    DiceProvider.prototype.rollDice = function (dice) {
+        var results = {};
+        results.damage = 0;
+        results.range = 0;
+        results.surge = 0;
+        results.block = 0;
+        results.dodge = 0;
+        results.evade = 0;
+        for (var _i = 0, dice_1 = dice; _i < dice_1.length; _i++) {
+            var die = dice_1[_i];
+            var side = this.getRandomInt(0, 6);
+            results.damage += die.sides[side].damage || 0;
+            results.range += die.sides[side].range || 0;
+            results.surge += die.sides[side].surge || 0;
+            results.block += die.sides[side].block || 0;
+            results.dodge += die.sides[side].dodge || 0;
+            results.evade += die.sides[side].evade || 0;
+        }
+        return results;
+    };
     DiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
     ], DiceProvider);
     return DiceProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=DiceProvider.js.map
@@ -416,10 +446,14 @@ var Die = (function () {
 }());
 
 var DieSide = (function () {
-    function DieSide(damage, surge, url) {
+    function DieSide(damage, surge, range, block, evade, dodge, url) {
         this.damage = damage;
         this.surge = surge;
         this.url = url;
+        this.range = range;
+        this.block = block;
+        this.evade = evade;
+        this.dodge = dodge;
     }
     return DieSide;
 }());

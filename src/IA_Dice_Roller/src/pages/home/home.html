@@ -26,4 +26,20 @@
 
   <button ion-button round (click)="rollDice()">Roll your dice!</button>
 
+  <div *ngIf="aggregatedResults != null">
+    <h2>Results</h2>
+    <ion-grid>
+      <ion-row>
+        <ion-col>damage : {{aggregatedResults.damage}}</ion-col>
+        <ion-col>surge : {{aggregatedResults.surge}}</ion-col>
+        <ion-col>range : {{aggregatedResults.range}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>block : {{aggregatedResults.block}}</ion-col>
+        <ion-col>dodge : {{aggregatedResults.dodge}}</ion-col>
+        <ion-col>evade : {{aggregatedResults.evade}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>  
+
 </ion-content>

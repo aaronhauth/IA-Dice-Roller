@@ -32,4 +32,5 @@ export class DieSide {
         this.evade = evade;
         this.dodge = dodge;
     }
+
 }

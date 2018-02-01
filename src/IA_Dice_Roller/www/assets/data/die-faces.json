@@ -3,7 +3,7 @@
         {
             "color" : "red",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"assets/imgs/red-3-damage.png",
             "sides" : [
                 {
                     "damage" : 1,

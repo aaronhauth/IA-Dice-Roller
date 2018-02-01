@@ -171,22 +171,42 @@ var HomePage = (function () {
         this.diceProvider = diceProvider;
         this.diceProvider.getDice()
             .subscribe(function (results) { _this.dice = results; console.log(_this.dice); }, function (error) { return console.log(error); });
+        this.aggregatedResults = null;
         this.dicePool = [];
     }
     HomePage.prototype.addToDicePool = function (die) {
         this.dicePool.push(die);
         console.log(this.dicePool);
+        this.stats = this.diceProvider.computeStats(this.dicePool);
     };
     HomePage.prototype.removeFromDicePool = function (die) {
         this.dicePool.splice(this.dicePool.findIndex(function (x) { return x.color == die.color; }), 1);
     };
     HomePage.prototype.rollDice = function () {
         this.results = this.diceProvider.rollDice(this.dicePool);
+        this.aggregatedResults = {
+            damage: 0,
+            surge: 0,
+            range: 0,
+            block: 0,
+            dodge: 0,
+            evade: 0
+        };
+        for (var _i = 0, _a = this.results; _i < _a.length; _i++) {
+            var result = _a[_i];
+            this.aggregatedResults.damage += result.damage;
+            this.aggregatedResults.surge += result.surge;
+            this.aggregatedResults.range += result.range;
+            this.aggregatedResults.block += result.block;
+            this.aggregatedResults.dodge += result.dodge;
+            this.aggregatedResults.evade += result.evade;
+        }
         console.log(this.results);
+        this.stats = this.diceProvider.computeStats(this.dicePool);
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dice">\n        <img (click)="addToDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n    <div *ngIf="dicePool.length == 0">Tap the dice you would like to add to your dice pool</div>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dicePool">\n        <img (click)="removeFromDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <button ion-button round (click)="rollDice()">Roll your dice!</button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dice">\n        <img (click)="addToDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n    <div *ngIf="dicePool.length == 0">Tap the dice you would like to add to your dice pool</div>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dicePool">\n        <img (click)="removeFromDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <button ion-button round (click)="rollDice()">Roll your dice!</button>\n\n  <div *ngIf="aggregatedResults != null">\n    <h2>Results</h2>\n    <ion-grid>\n      <ion-row>\n        <ion-col>damage : {{aggregatedResults.damage}}</ion-col>\n        <ion-col>surge : {{aggregatedResults.surge}}</ion-col>\n        <ion-col>range : {{aggregatedResults.range}}</ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>block : {{aggregatedResults.block}}</ion-col>\n        <ion-col>dodge : {{aggregatedResults.dodge}}</ion-col>\n        <ion-col>evade : {{aggregatedResults.evade}}</ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>  \n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]) === "function" && _b || Object])
@@ -261,24 +281,74 @@ var DiceProvider = (function () {
         return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     };
     DiceProvider.prototype.rollDice = function (dice) {
-        var results = {};
-        results.damage = 0;
-        results.range = 0;
-        results.surge = 0;
-        results.block = 0;
-        results.dodge = 0;
-        results.evade = 0;
+        var results = [];
         for (var _i = 0, dice_1 = dice; _i < dice_1.length; _i++) {
             var die = dice_1[_i];
             var side = this.getRandomInt(0, 6);
-            results.damage += die.sides[side].damage || 0;
-            results.range += die.sides[side].range || 0;
-            results.surge += die.sides[side].surge || 0;
-            results.block += die.sides[side].block || 0;
-            results.dodge += die.sides[side].dodge || 0;
-            results.evade += die.sides[side].evade || 0;
+            var result = {
+                damage: 0,
+                range: 0,
+                surge: 0,
+                block: 0,
+                dodge: 0,
+                evade: 0
+            };
+            result.color = die.color;
+            result.url = die.url;
+            result.damage = die.sides[side].damage || 0;
+            result.range = die.sides[side].range || 0;
+            result.surge = die.sides[side].surge || 0;
+            result.block = die.sides[side].block || 0;
+            result.dodge = die.sides[side].dodge || 0;
+            result.evade = die.sides[side].evade || 0;
+            console.log(result);
+            results.push(result);
         }
         return results;
+    };
+    DiceProvider.prototype.computeStats = function (dice) {
+        var results = {};
+        var stats = ["damage", "surge", "block", "range", "evade", "dodge"];
+        for (var _i = 0, dice_2 = dice; _i < dice_2.length; _i++) {
+            var die = dice_2[_i];
+            for (var _a = 0, stats_1 = stats; _a < stats_1.length; _a++) {
+                var stat = stats_1[_a];
+                var result = this.computeSingleStat(die, stat);
+                if (results[stat]) {
+                    results[stat].max += result.max;
+                    results[stat].min += result.min;
+                    results[stat].average += result.average;
+                }
+                else {
+                    results[stat] = result;
+                }
+            }
+        }
+        console.log(results);
+    };
+    DiceProvider.prototype.computeSingleStat = function (die, stat) {
+        var min = 999;
+        var max = 0;
+        var average = 0;
+        var sum = 0;
+        for (var _i = 0, _a = die.sides; _i < _a.length; _i++) {
+            var side = _a[_i];
+            var value = Number(side[stat]) || 0;
+            if (value > max) {
+                max = value;
+            }
+            if (value < min) {
+                min = value;
+            }
+            sum += value;
+        }
+        average = sum / 6;
+        var result = {
+            min: min,
+            max: max,
+            average: average
+        };
+        return result;
     };
     DiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -315,14 +385,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_dice_DiceProvider__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_about_about__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_dice_DiceProvider__ = __webpack_require__(200);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -341,38 +412,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_about_about__["a" /* AboutPage */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__["a" /* ContactPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__["a" /* TabsPage */]
+                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_about_about__["a" /* AboutPage */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__["a" /* TabsPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: []
-                })
+                }),
+                __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["a" /* IonicStorageModule */].forRoot()
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_about_about__["a" /* AboutPage */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__["a" /* ContactPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__["a" /* TabsPage */]
+                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_about_about__["a" /* AboutPage */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__["a" /* TabsPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_11__providers_dice_DiceProvider__["a" /* DiceProvider */]
+                __WEBPACK_IMPORTED_MODULE_12__providers_dice_DiceProvider__["a" /* DiceProvider */]
             ]
         })
     ], AppModule);

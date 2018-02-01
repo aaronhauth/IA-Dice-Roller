@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -12,6 +13,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DiceProvider } from '../providers/dice/DiceProvider';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { DiceProvider } from '../providers/dice/DiceProvider';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

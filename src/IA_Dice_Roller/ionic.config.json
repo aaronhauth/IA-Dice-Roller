@@ -1,6 +1,6 @@
 {
   "name": "IA_Dice_Roller",
-  "app_id": "",
+  "app_id": "0a5a6a75",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

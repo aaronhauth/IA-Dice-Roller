@@ -156,25 +156,25 @@
                     "url" : "http://lorempixel.com/200/200/" 
                 },
                 {
-                    "dodge":1,
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
-                    "block":1,
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
-                    "block":1,
-                    "dodge":1,
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
-                    "block":1,
-                    "dodge":1,
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
                     "evade":1,
+                    "url" : "http://lorempixel.com/200/200/" 
+                },
+                {
+                    "block":1,
+                    "url" : "http://lorempixel.com/200/200/" 
+                },
+                {
+                    "block":1,
+                    "evade":1,
+                    "url" : "http://lorempixel.com/200/200/" 
+                },
+                {
+                    "block":1,
+                    "evade":1,
+                    "url" : "http://lorempixel.com/200/200/" 
+                },
+                {
+                    "dodge":1,
                     "url" : "http://lorempixel.com/200/200/" 
                 }
             ]
@@ -185,7 +185,7 @@
             "url":"http://lorempixel.com/200/200/",
             "sides":[
                 {
-                    "dodge":1,
+                    "evade":1,
                     "url" : "http://lorempixel.com/200/200/"     
                 },
                 {

@@ -30,16 +30,17 @@
     <h2>Results</h2>
     <ion-grid>
       <ion-row>
-        <ion-col>damage : {{aggregatedResults.damage}}</ion-col>
-        <ion-col>surge : {{aggregatedResults.surge}}</ion-col>
-        <ion-col>range : {{aggregatedResults.range}}</ion-col>
+        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResults.damage}}</ion-col>
+        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{aggregatedResults.surge}}</ion-col>
+        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{aggregatedResults.range}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>block : {{aggregatedResults.block}}</ion-col>
-        <ion-col>dodge : {{aggregatedResults.dodge}}</ion-col>
-        <ion-col>evade : {{aggregatedResults.evade}}</ion-col>
+        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/block.png"> : {{aggregatedResults.block}}</ion-col>
+        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/dodge.png"> : {{aggregatedResults.dodge}}</ion-col>
+        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResults.evade}}</ion-col>
       </ion-row>
     </ion-grid>
+    <ion-icon name="arrow-dropdown"></ion-icon>
   </div>  
 
 </ion-content>

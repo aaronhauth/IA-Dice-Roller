@@ -206,7 +206,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dice">\n        <img (click)="addToDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n    <div *ngIf="dicePool.length == 0">Tap the dice you would like to add to your dice pool</div>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dicePool">\n        <img (click)="removeFromDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <button ion-button round (click)="rollDice()">Roll your dice!</button>\n\n  <div *ngIf="aggregatedResults != null">\n    <h2>Results</h2>\n    <ion-grid>\n      <ion-row>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResults.damage}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{aggregatedResults.surge}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{aggregatedResults.range}}</ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/block.png"> : {{aggregatedResults.block}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/dodge.png"> : {{aggregatedResults.dodge}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResults.evade}}</ion-col>\n      </ion-row>\n    </ion-grid>\n    <ion-icon name="arrow-dropdown"></ion-icon>\n  </div>  \n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <roll-result></roll-result>\n  <h2>Star Wars IA App</h2>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dice">\n        <img (click)="addToDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n  <h2>Dice Pool</h2>\n  <ion-grid>\n    <div *ngIf="dicePool.length == 0">Tap the dice you would like to add to your dice pool</div>\n    <ion-row>\n      <ion-col col-2 *ngFor="let die of dicePool">\n        <img (click)="removeFromDicePool(die)" src="{{die.url}}">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <button ion-button round (click)="rollDice()">Roll your dice!</button>\n\n  <div *ngIf="aggregatedResults != null">\n    <h2>Results</h2>\n    <ion-grid>\n      <ion-row>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResults.damage}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{aggregatedResults.surge}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{aggregatedResults.range}}</ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/block.png"> : {{aggregatedResults.block}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/dodge.png"> : {{aggregatedResults.dodge}}</ion-col>\n        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResults.evade}}</ion-col>\n      </ion-row>\n    </ion-grid>\n    <ion-icon name="arrow-dropdown"></ion-icon>\n    \n  </div>  \n\n</ion-content>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\pages\home\home.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_dice_DiceProvider__["a" /* DiceProvider */]])
@@ -384,14 +384,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_about_about__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_dice_DiceProvider__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_components_module__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_about_about__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_dice_DiceProvider__ = __webpack_require__(200);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -411,39 +412,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_about_about__["a" /* AboutPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__["a" /* ContactPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__["a" /* TabsPage */]
+                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_about_about__["a" /* AboutPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__["a" /* TabsPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_5__components_components_module__["a" /* ComponentsModule */],
+                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
                 __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["a" /* IonicStorageModule */].forRoot()
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_about_about__["a" /* AboutPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__["a" /* ContactPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__["a" /* TabsPage */]
+                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_about_about__["a" /* AboutPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__["a" /* TabsPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_12__providers_dice_DiceProvider__["a" /* DiceProvider */]
+                __WEBPACK_IMPORTED_MODULE_13__providers_dice_DiceProvider__["a" /* DiceProvider */]
             ]
         })
     ], AppModule);
@@ -530,6 +533,78 @@ var DieSide = (function () {
 }());
 
 //# sourceMappingURL=die.js.map
+
+/***/ }),
+
+/***/ 285:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__roll_result_roll_result__ = __webpack_require__(286);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var ComponentsModule = (function () {
+    function ComponentsModule() {
+    }
+    ComponentsModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [__WEBPACK_IMPORTED_MODULE_1__roll_result_roll_result__["a" /* RollResultComponent */]],
+            imports: [],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__roll_result_roll_result__["a" /* RollResultComponent */]]
+        })
+    ], ComponentsModule);
+    return ComponentsModule;
+}());
+
+//# sourceMappingURL=components.module.js.map
+
+/***/ }),
+
+/***/ 286:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RollResultComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the RollResultComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var RollResultComponent = (function () {
+    function RollResultComponent() {
+        console.log('Hello RollResultComponent Component');
+        this.text = 'Hello World';
+    }
+    RollResultComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'roll-result',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\components\roll-result\roll-result.html"*/'<!-- Generated template for the RollResultComponent component -->\n<div>\n  {{text}}\n</div>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\IA_Dice_Roller\src\components\roll-result\roll-result.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], RollResultComponent);
+    return RollResultComponent;
+}());
+
+//# sourceMappingURL=roll-result.js.map
 
 /***/ })
 

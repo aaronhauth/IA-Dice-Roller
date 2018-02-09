@@ -25684,6 +25684,10 @@ ion-navbar.toolbar {
   vertical-align: middle;
 }
 
+roll-result ion-thumbnail {
+  width: 10px;
+}
+
 page-home .centered {
   text-align: center;
 }

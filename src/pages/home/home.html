@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content padding>
-  <roll-result></roll-result>
   <h2>Star Wars IA App</h2>
   <ion-grid>
     <ion-row>
@@ -29,19 +28,7 @@
 
   <div *ngIf="aggregatedResults != null">
     <h2>Results</h2>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResults.damage}}</ion-col>
-        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{aggregatedResults.surge}}</ion-col>
-        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{aggregatedResults.range}}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/block.png"> : {{aggregatedResults.block}}</ion-col>
-        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/dodge.png"> : {{aggregatedResults.dodge}}</ion-col>
-        <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResults.evade}}</ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-icon name="arrow-dropdown"></ion-icon>
+    <roll-result [aggregatedResult]="aggregatedResults" [results]="results"></roll-result>
     
   </div>  
 

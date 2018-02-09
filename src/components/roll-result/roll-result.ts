@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the RollResultComponent component.
@@ -12,11 +12,12 @@ import { Component } from '@angular/core';
 })
 export class RollResultComponent {
 
-  text: string;
+  @Input() aggregatedResult: any;
+  @Input() results: any;
 
   constructor() {
-    console.log('Hello RollResultComponent Component');
-    this.text = 'Hello World';
+    console.log(this.aggregatedResult);
+    console.log(this.results);
   }
 
 }

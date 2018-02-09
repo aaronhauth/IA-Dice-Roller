@@ -3,70 +3,70 @@
         {
             "color" : "red",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"./assets/imgs/red-3-damage.png",
             "sides" : [
                 {
                     "damage" : 1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/red-1-damage.png" 
                 },
                 {
                     "damage" : 3,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/red-3-damage.png" 
                 },
                 {
                     "damage" : 3,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/red-3-damage.png" 
                 },
                 {
                     "damage" : 2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/red-2-damage.png" 
                 },
                 {
                     "damage" : 2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/red-2-damage.png" 
                 },
                 {
                     "damage" : 2,
                     "surge" : 1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/red-2-damage-1-surge.png" 
                 }
             ]
         },
         {
             "color" : "blue",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"./assets/imgs/blue-1-damage-5-range.png",
             "sides" : [
                 {
                     "surge" : 1,
                     "range" : 2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/blue-1-surge-2-range.png" 
                 },
                 {
                     "damage" : 1,
                     "range" : 2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/blue-1-damage-2-range.png" 
                 },
                 {
                     "surge" : 1,
                     "damage":1,
                     "range":3,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/blue-1-damage-1-surge-3-range.png" 
                 },
                 {
                     "damage":2,
                     "range":3,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/blue-2-damage-3-range.png" 
                 },
                 {
                     "damage":2,
                     "range":4,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/blue-2-damage-4-range.png" 
                 },
                 {
                     "damage": 1,
                     "range":5,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/blue-1-damage-5-range.png" 
                 }
 
             ]
@@ -74,139 +74,139 @@
         {
             "color":"yellow",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"./assets/imgs/yellow-1-damage-2-surge.png",
             "sides" : [
                 {
                     "damage":1,
                     "surge":2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/yellow-1-damage-2-surge.png" 
                 },
                 {
                     "surge":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/yellow-1-surge.png" 
                 },
                 {
                     "surge":1,
                     "range":2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/yellow-1-surge-2-range.png" 
                 },
                 {
                     "damage":1,
                     "range":2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/yellow-1-damage-2-range.png" 
                 },
                 {
                     "damage":1,
                     "surge":1,
                     "range":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/yellow-1-damage-1-surge-1-range.png" 
                 },
                 {
                     "damage":2,
                     "range":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/yellow-2-damage-1-range.png" 
                 }
             ]   
         },
         {
             "color": "green",
             "type":"attack",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"./assets/imgs/green-1-damage-1-surge-2-range.png",
             "sides":[
                 {
                     "damage":2,
                     "range":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/green-1-damage-1-surge-2-range.png" 
                 },
                 {
                     "damage":1,
                     "surge":1,
                     "range":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/green-1-damage-1-surge-2-range.png" 
                 },
                 {
                     "surge":1,
                     "range":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/green-1-damage-1-surge-2-range.png" 
                 },
                 {
                     "damage" : 1,
                     "surge":1,
                     "range":2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/green-1-damage-1-surge-2-range.png" 
                 },
                 {
                     "damage": 2,
                     "range": 2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/green-1-damage-1-surge-2-range.png" 
                 },
                 {
                     "damage":2,
                     "range":3,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/green-1-damage-1-surge-2-range.png" 
                 }
             ]
         },
         {
             "color" : "white",
             "type": "defense",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"./assets/imgs/white-1-dodge.png",
             "sides":[
                 {
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
-                    "dodge":1,
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
-                    "block":1,
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
-                    "block":1,
-                    "dodge":1,
-                    "url" : "http://lorempixel.com/200/200/" 
-                },
-                {
-                    "block":1,
-                    "dodge":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/white-blank.png" 
                 },
                 {
                     "evade":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/white-1-evade.png" 
+                },
+                {
+                    "block":1,
+                    "url" : "./assets/imgs/white-1-block.png" 
+                },
+                {
+                    "block":1,
+                    "evade":1,
+                    "url" : "./assets/imgs/white-1-block-1-evade.png" 
+                },
+                {
+                    "block":1,
+                    "evade":1,
+                    "url" : "./assets/imgs/white-1-block-1-evade.png" 
+                },
+                {
+                    "dodge":1,
+                    "url" : "./assets/imgs/white-1-dodge.png" 
                 }
             ]
         },
         {
             "color" : "black",
             "type": "defense",
-            "url":"http://lorempixel.com/200/200/",
+            "url":"./assets/imgs/black-3-block.png",
             "sides":[
                 {
-                    "dodge":1,
-                    "url" : "http://lorempixel.com/200/200/"     
+                    "evade":1,
+                    "url" : "./assets/imgs/black-1-evade.png"     
                 },
                 {
                     "block":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/black-1-block.png" 
                 },
                 {
                     "block":1,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/black-1-block.png" 
                 },
                 {
                     "block":2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/black-2-block.png" 
                 },
                 {
                     "block":2,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/black-2-block.png" 
                 },
                 {
                     "block":3,
-                    "url" : "http://lorempixel.com/200/200/" 
+                    "url" : "./assets/imgs/black-3-block.png" 
                 }
 
             ]

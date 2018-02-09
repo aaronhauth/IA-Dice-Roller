@@ -1,4 +1,36 @@
 <!-- Generated template for the RollResultComponent component -->
 <div>
-  {{text}}
+  <ion-grid>
+    <ion-row>
+      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResult.damage}}</ion-col>
+      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{aggregatedResult.surge}}</ion-col>
+      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{aggregatedResult.range}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/block.png"> : {{aggregatedResult.block}}</ion-col>
+      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/dodge.png"> : {{aggregatedResult.dodge}}</ion-col>
+      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResult.evade}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-item *ngFor="let result of results">
+      <ion-thumbnail item-start>
+        <img  src="{{result.url}}">
+      </ion-thumbnail>
+      <h2 *ngIf="result.type == 'attack'">
+
+        <img class="IA-icon" src="./assets/imgs/Damage.png"> : {{result.damage}}
+        <img class="IA-icon" src="./assets/imgs/surge.png"> : {{result.surge}}
+        <img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{result.range}}
+
+      </h2>
+      <h2 *ngIf="result.type == 'defense'">
+        <img class="IA-icon" src="./assets/imgs/block.png"> : {{result.block}}
+        <img class="IA-icon" src="./assets/imgs/dodge.png"> : {{result.dodge}}
+        <img class="IA-icon" src="./assets/imgs/evade.png"> : {{result.evade}}
+      </h2>
+    </ion-item>
+    
+  </ion-list>
+  <ion-icon name="arrow-dropdown"></ion-icon>
 </div>

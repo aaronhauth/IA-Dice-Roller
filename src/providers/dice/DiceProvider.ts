@@ -61,8 +61,9 @@ export class DiceProvider {
       }
 
 
+      result.type = die.type;
       result.color = die.color;
-      result.url = die.url;
+      result.url = die.sides[side].url;
       result.damage = die.sides[side].damage || 0;
       result.range = die.sides[side].range || 0;
       result.surge = die.sides[side].surge || 0;

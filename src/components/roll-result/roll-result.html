@@ -1,5 +1,5 @@
 <!-- Generated template for the RollResultComponent component -->
-<div>
+<div class="container" (click)="toggleExpanded()">
   <ion-grid>
     <ion-row>
       <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResult.damage}}</ion-col>
@@ -12,25 +12,25 @@
       <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResult.evade}}</ion-col>
     </ion-row>
   </ion-grid>
-  <ion-list>
+  <ion-list *ngIf="expanded">
     <ion-item *ngFor="let result of results">
       <ion-thumbnail item-start>
         <img  src="{{result.url}}">
       </ion-thumbnail>
-      <h2 *ngIf="result.type == 'attack'">
+      <div class="stats" *ngIf="result.type == 'attack'">
 
-        <img class="IA-icon" src="./assets/imgs/Damage.png"> : {{result.damage}}
-        <img class="IA-icon" src="./assets/imgs/surge.png"> : {{result.surge}}
-        <img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{result.range}}
+        <div class="item"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{result.damage}}</div>  
+        <div class="item"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{result.surge}}</div>  
+        <div class="item"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{result.range}}</div> 
 
-      </h2>
-      <h2 *ngIf="result.type == 'defense'">
+      </div>
+      <div class="stats" *ngIf="result.type == 'defense'">
         <img class="IA-icon" src="./assets/imgs/block.png"> : {{result.block}}
         <img class="IA-icon" src="./assets/imgs/dodge.png"> : {{result.dodge}}
         <img class="IA-icon" src="./assets/imgs/evade.png"> : {{result.evade}}
-      </h2>
+      </div>
     </ion-item>
     
   </ion-list>
-  <ion-icon name="arrow-dropdown"></ion-icon>
+  <div class="expand-icon"><ion-icon name="{{!expanded ? 'arrow-dropdown' : 'arrow-dropup'}}" ></ion-icon></div>
 </div>

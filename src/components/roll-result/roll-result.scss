@@ -1,5 +1,26 @@
 roll-result {
-    ion-thumbnail {
-        width: 10px;
+
+    .container {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #bbb;
+    }
+    
+
+    div.stats {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        .item {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+
+    .expand-icon {
+        text-align: center;
+
     }
 }

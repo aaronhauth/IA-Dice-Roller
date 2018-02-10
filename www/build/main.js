@@ -352,10 +352,9 @@ var DiceProvider = (function () {
     };
     DiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], DiceProvider);
     return DiceProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=DiceProvider.js.map
@@ -519,7 +518,17 @@ var RollResultComponent = (function () {
     function RollResultComponent() {
         console.log(this.aggregatedResult);
         console.log(this.results);
+        this.expanded = false;
     }
+    RollResultComponent.prototype.toggleExpanded = function () {
+        this.expanded = !this.expanded;
+    };
+    RollResultComponent.prototype.hasAttack = function () {
+        return (this.aggregatedResult.damage + this.aggregatedResult.surge + this.aggregatedResult.range) > 0;
+    };
+    RollResultComponent.prototype.hasDefense = function () {
+        return (this.aggregatedResult.block + this.aggregatedResult.dodge + this.aggregatedResult.evade) > 0;
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
         __metadata("design:type", Object)
@@ -530,7 +539,7 @@ var RollResultComponent = (function () {
     ], RollResultComponent.prototype, "results", void 0);
     RollResultComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'roll-result',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\components\roll-result\roll-result.html"*/'<!-- Generated template for the RollResultComponent component -->\n<div>\n  <ion-grid>\n    <ion-row>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResult.damage}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{aggregatedResult.surge}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{aggregatedResult.range}}</ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/block.png"> : {{aggregatedResult.block}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/dodge.png"> : {{aggregatedResult.dodge}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResult.evade}}</ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-list>\n    <ion-item *ngFor="let result of results">\n      <ion-thumbnail item-start>\n        <img  src="{{result.url}}">\n      </ion-thumbnail>\n      <h2 *ngIf="result.type == \'attack\'">\n\n        <img class="IA-icon" src="./assets/imgs/Damage.png"> : {{result.damage}}\n        <img class="IA-icon" src="./assets/imgs/surge.png"> : {{result.surge}}\n        <img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{result.range}}\n\n      </h2>\n      <h2 *ngIf="result.type == \'defense\'">\n        <img class="IA-icon" src="./assets/imgs/block.png"> : {{result.block}}\n        <img class="IA-icon" src="./assets/imgs/dodge.png"> : {{result.dodge}}\n        <img class="IA-icon" src="./assets/imgs/evade.png"> : {{result.evade}}\n      </h2>\n    </ion-item>\n    \n  </ion-list>\n  <ion-icon name="arrow-dropdown"></ion-icon>\n</div>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\components\roll-result\roll-result.html"*/
+            selector: 'roll-result',template:/*ion-inline-start:"C:\Users\aaron\dev\IA-Dice-Roller\src\components\roll-result\roll-result.html"*/'<!-- Generated template for the RollResultComponent component -->\n<div class="container" (click)="toggleExpanded()">\n  <ion-grid>\n    <ion-row>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{aggregatedResult.damage}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{aggregatedResult.surge}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{aggregatedResult.range}}</ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/block.png"> : {{aggregatedResult.block}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/dodge.png"> : {{aggregatedResult.dodge}}</ion-col>\n      <ion-col class="centered"><img class="IA-icon" src="./assets/imgs/evade.png"> : {{aggregatedResult.evade}}</ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-list *ngIf="expanded">\n    <ion-item *ngFor="let result of results">\n      <ion-thumbnail item-start>\n        <img  src="{{result.url}}">\n      </ion-thumbnail>\n      <div class="stats" *ngIf="result.type == \'attack\'">\n\n        <div class="item"><img class="IA-icon" src="./assets/imgs/Damage.png"> : {{result.damage}}</div>  \n        <div class="item"><img class="IA-icon" src="./assets/imgs/surge.png"> : {{result.surge}}</div>  \n        <div class="item"><img class="IA-icon" src="./assets/imgs/accuracy.png"> : {{result.range}}</div> \n\n      </div>\n      <div class="stats" *ngIf="result.type == \'defense\'">\n        <img class="IA-icon" src="./assets/imgs/block.png"> : {{result.block}}\n        <img class="IA-icon" src="./assets/imgs/dodge.png"> : {{result.dodge}}\n        <img class="IA-icon" src="./assets/imgs/evade.png"> : {{result.evade}}\n      </div>\n    </ion-item>\n    \n  </ion-list>\n  <div class="expand-icon"><ion-icon name="{{!expanded ? \'arrow-dropdown\' : \'arrow-dropup\'}}" ></ion-icon></div>\n</div>\n'/*ion-inline-end:"C:\Users\aaron\dev\IA-Dice-Roller\src\components\roll-result\roll-result.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], RollResultComponent);
